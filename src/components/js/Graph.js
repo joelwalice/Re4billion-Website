@@ -92,7 +92,6 @@ const Graph = ({ dataCharts }) => {
     const CustomTooltipBW = ({ active, payload, label }) => {
         if (active && payload && payload.length) {
             const data = payload[0].payload;
-            console.log(data);
 
             return (
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>

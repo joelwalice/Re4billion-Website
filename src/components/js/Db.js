@@ -21,9 +21,9 @@ const AllDevices = () => {
   const [ge, setGe] = useState("");
   const [lc, setLc] = useState("");
   const [dateOrg, setDateOrg] = useState("");
-  const [selectedItem, setSelectedItem] = useState("ftb001");
+  const [selectedItem, setSelectedItem] = useState("stb001");
   const [isLoading, setIsLoading] = useState(true);
-  const [location, setLocation] = useState('Kollar');
+  const [location, setLocation] = useState('Modiyur');
   const [solarVoltage, setSolarVoltage] = useState('');
   const [solarCurrent, setSolarCurrent] = useState('');
   const [inverterVoltage, setInverterVoltage] = useState('');
@@ -105,7 +105,7 @@ const AllDevices = () => {
   const fetchData = async (item) => {
     try {
       setIsLoading(true);
-      const response = await axios.post(`${process.env.REACT_APP_HOST}/admin/db`, { selectedItem: item });
+      const response = await axios.post(`https://re4-drab.vercel.app/admin/db`, { selectedItem: item });
       if (response.status === 200) {
         const data = response.data.data;
         setDateOrg(data.caldate);

@@ -45,7 +45,7 @@ const AllDevices = () => {
         <div className='flex w-full p-2 gap-2'>
           <div className="w-1/2 border border-1 border-black rounded-lg">
             <h1 className="text-md md:text-3xl px-2 bg-green-600 flex items-center text-white justify-center p-1 rounded-l-lg rounded-bl-none rounded-r-lg rounded-br-none">
-              Working Devices : {working.length}
+              Working Devices -&gt; {working.length}
             </h1>
             <div className="">
               {working.map((device, index) => (
@@ -95,7 +95,7 @@ const AllDevices = () => {
           </div>
           <div className="w-1/2 border border-1 rounded-lg border-black">
             <div><h1 className="text-md md:text-3xl px-2 bg-red-500 flex items-center text-white justify-center p-1 rounded-l-lg rounded-bl-none rounded-r-lg rounded-br-none">
-              Devices under Review : {notWorking.length}
+              Devices under Review -&gt; {notWorking.length}
             </h1>
             </div>
             <div className="">

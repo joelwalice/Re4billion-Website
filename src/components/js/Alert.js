@@ -10,7 +10,7 @@ export default function Alert(props) {
                 <div className={`border-l-4 ${props.alert.type === 'success' ? 'border-green-700 bg-[#D4EDDA]' : 'border-red-700 bg-[#F8D7DA]'} p-2 rounded-md shadow-md`}>
                     <div className="flex justify-between items-center">
                         <div className="flex items-center justify-between">
-                            <div className={`text-xl ${console.log(props.alert.type), props.alert.type === 'success' ? 'text-green-700' : 'text-red-700'}`}>
+                            <div className={`text-xl ${ props.alert.type === 'success' ? 'text-green-700' : 'text-red-700'}`}>
                                 {props.alert.type === 'success' ? (
                                     <div className='flex items-center p-1 gap-2 text-green-700'>
                                         <div>
