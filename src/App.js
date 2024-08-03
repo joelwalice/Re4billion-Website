@@ -12,8 +12,8 @@ function App() {
     <div>
       <Routes>
         <Route exact path='/' Component={Login} />
-        <Route exact path='/admin/' Component={Location} />
-        <Route exact path='/admin/Alldevices' Component={AllDevices} />
+        <Route exact path='/admin' Component={Location} />
+        <Route exact path='/admin/alldevices' Component={AllDevices} />
         <Route exact path='/admin/db' Component={Db} />
         <Route exact path='/user' Component={userLocation} />
         <Route exact path='/user/db' Component={userHome} />

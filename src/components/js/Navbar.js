@@ -15,7 +15,7 @@ const Navbar = () => {
                 <Link to="https://re4billion.ai/"><h1 className='text-2xl p-4 font-semibold select-none'>RE4BILLION</h1></Link>
                 <div className='flex items-center'>
                     <Link to="/admin/db"><h1 className='p-2 select-none'>Dashboard</h1></Link>
-                    <Link to="/admin/Alldevices"><h1 className='p-2 select-none'>Status</h1></Link>
+                    <Link to="/admin/alldevices"><h1 className='p-2 select-none'>Status</h1></Link>
                     <Link to="/"><h1 className='p-2 select-none'>Location</h1></Link>
                 </div>
             </div>

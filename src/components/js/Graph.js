@@ -52,7 +52,7 @@ const Graph = ({ dataCharts }) => {
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
                     <p className="label" style={{ color: '#B90E0A' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
                     <p className="label" style={{ color: '#B90E0A' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
-                    <p className="intro" style={{ color: '#B90E0A' }}>{`Grid Power: ${data.GridPower.toFixed(2)} KW`}</p>
+                    <p className="intro" style={{ color: '#B90E0A' }}>{`Grid Power: ${data.GridPower} KW`}</p>
                 </div>
             );
         }
@@ -67,7 +67,7 @@ const Graph = ({ dataCharts }) => {
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
                     <p className="label" style={{ color: '#B90E0A' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
                     <p className="label" style={{ color: '#B90E0A' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
-                    <p className="intro" style={{ color: '#B90E0A' }}>{`Solar Power: ${data.SolarPower.toFixed(2)} KW`}</p>
+                    <p className="intro" style={{ color: '#B90E0A' }}>{`Solar Power: ${data.SolarPower} KW`}</p>
                 </div>
             );
         }
@@ -82,7 +82,7 @@ const Graph = ({ dataCharts }) => {
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
                     <p className="label" style={{ color: '#B90E0A' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
                     <p className="label" style={{ color: '#B90E0A' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
-                    <p className="intro" style={{ color: '#B90E0A' }}>{`Inverter Power: ${data.InverterPower.toFixed(2)} KW`}</p>
+                    <p className="intro" style={{ color: '#B90E0A' }}>{`Inverter Power: ${data.InverterPower} KW`}</p>
                 </div>
             );
         }
@@ -97,7 +97,7 @@ const Graph = ({ dataCharts }) => {
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
                     <p className="label" style={{ color: '#B90E0A' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
                     <p className="label" style={{ color: '#B90E0A' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
-                    <p className="intro" style={{ color: '#B90E0A' }}>{`Inverter Power: ${data.BatteryPower.toFixed(2)} KW`}</p>
+                    <p className="intro" style={{ color: '#B90E0A' }}>{`Inverter Power: ${data.BatteryPower} KW`}</p>
                 </div>
             );
         }
@@ -112,7 +112,7 @@ const Graph = ({ dataCharts }) => {
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
                     <p className="label" style={{ color: '#03C04A' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
                     <p className="label" style={{ color: '#03C04A' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
-                    <p className="intro" style={{ color: '#03C04A' }}>{`Grid Current: ${data.GridCurrent} I`}</p>
+                    <p className="intro" style={{ color: '#03C04A' }}>{`Grid Current: ${data.GridCurrent} A`}</p>
                 </div>
             );
         }
@@ -127,7 +127,7 @@ const Graph = ({ dataCharts }) => {
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
                     <p className="label" style={{ color: '#03C04A' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
                     <p className="label" style={{ color: '#03C04A' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
-                    <p className="intro" style={{ color: '#03C04A' }}>{`Inverter Current: ${data.InverterCurrent} I`}</p>
+                    <p className="intro" style={{ color: '#03C04A' }}>{`Inverter Current: ${data.InverterCurrent} A`}</p>
                 </div>
             );
         }
@@ -142,7 +142,7 @@ const Graph = ({ dataCharts }) => {
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
                     <p className="label" style={{ color: '#03C04A' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
                     <p className="label" style={{ color: '#03C04A' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
-                    <p className="intro" style={{ color: '#03C04A' }}>{`Solar Current: ${data.SolarCurrent} I`}</p>
+                    <p className="intro" style={{ color: '#03C04A' }}>{`Solar Current: ${data.SolarCurrent} A`}</p>
                 </div>
             );
         }
@@ -157,7 +157,7 @@ const Graph = ({ dataCharts }) => {
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
                     <p className="label" style={{ color: '#03C04A' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
                     <p className="label" style={{ color: '#03C04A' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
-                    <p className="intro" style={{ color: '#03C04A' }}>{`Solar Current: ${data.BatteryCurrent.toFixed(2)} I`}</p>
+                    <p className="intro" style={{ color: '#03C04A' }}>{`Solar Current: ${data.BatteryCurrent.toFixed(2)} A`}</p>
                 </div>
             );
         }
@@ -172,7 +172,7 @@ const Graph = ({ dataCharts }) => {
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
                     <p className="label" style={{ color: '#1338BE' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
                     <p className="label" style={{ color: '#1338BE' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
-                    <p className="intro" style={{ color: '#1338BE' }}>{`Solar Voltage: ${data.SolarVoltage.toFixed(2)} V`}</p>
+                    <p className="intro" style={{ color: '#1338BE' }}>{`Solar Voltage: ${data.SolarVoltage} V`}</p>
                 </div>
             );
         }
@@ -187,7 +187,7 @@ const Graph = ({ dataCharts }) => {
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
                     <p className="label" style={{ color: '#1338BE' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
                     <p className="label" style={{ color: '#1338BE' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
-                    <p className="intro" style={{ color: '#1338BE' }}>{`Battery Voltage: ${data.BatteryVoltage.toFixed(2)} V`}</p>
+                    <p className="intro" style={{ color: '#1338BE' }}>{`Battery Voltage: ${data.BatteryVoltage} V`}</p>
                 </div>
             );
         }
@@ -202,7 +202,7 @@ const Graph = ({ dataCharts }) => {
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
                     <p className="label" style={{ color: '#1338BE' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
                     <p className="label" style={{ color: '#1338BE' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
-                    <p className="intro" style={{ color: '#1338BE' }}>{`Grid Voltage: ${data.GridVoltage.toFixed(2)} V`}</p>
+                    <p className="intro" style={{ color: '#1338BE' }}>{`Grid Voltage: ${data.GridVoltage} V`}</p>
                 </div>
             );
         }
@@ -217,7 +217,7 @@ const Graph = ({ dataCharts }) => {
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
                     <p className="label" style={{ color: '#1338BE' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
                     <p className="label" style={{ color: '#1338BE' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
-                    <p className="intro" style={{ color: '#1338BE' }}>{`Inverter Voltage: ${data.InverterVoltage.toFixed(2)} V`}</p>
+                    <p className="intro" style={{ color: '#1338BE' }}>{`Inverter Voltage: ${data.InverterVoltage} V`}</p>
                 </div>
             );
         }
@@ -236,7 +236,7 @@ const Graph = ({ dataCharts }) => {
                             margin={{ top: 0, right: 30, left: 0, bottom: 25 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem' }} tickSize={10}/>
-                            <YAxis style={{ fontSize: '0.8rem' }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem' }} domain={[0, 'dataMax + 2']} tickCount={12} />
+                            <YAxis style={{ fontSize: '0.8rem' }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem' }} domain={[0, 'dataMax + 5']} tickCount={12} />
                             <Tooltip content={CustomTooltipSV} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="SolarVoltage" stroke="#1338be" dot={false} />
@@ -253,7 +253,7 @@ const Graph = ({ dataCharts }) => {
                             margin={{ top: 0, right: 30, left: 0, bottom: 25 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} tickCount={5} domain={[0, 'dataMax + 2']} />
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} tickCount={10} domain={[0, 30]} />
                             <Tooltip content={CustomTooltipSI} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="SolarCurrent" stroke="#03c04a" dot={false} />
@@ -272,7 +272,7 @@ const Graph = ({ dataCharts }) => {
                             margin={{ top: 0, right: 30, left: 0, bottom: 25 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 2']} tickCount={20}  />
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 10']} tickCount={20}  />
                             <Tooltip content={CustomTooltipSW} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="SolarPower" stroke="#b90e0a" dot={false} />
@@ -290,7 +290,7 @@ const Graph = ({ dataCharts }) => {
                         <LineChart width={380} height={280} data={dataCharts} margin={{ top: 0, right: 30, left: 0, bottom: 25, }} >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 10']} tickCount={14}  />
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']} tickCount={14}  />
                             <Tooltip content={CustomTooltipIV} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="InverterVoltage" stroke="#1338be" dot={false} />
@@ -309,7 +309,7 @@ const Graph = ({ dataCharts }) => {
                             margin={{ top: 0, right: 30, left: 0, bottom: 25, }} >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} tickCount={10} domain={[0, 'dataMax + 2']} />
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 30]} tickCount={10}/>
                             <Tooltip content={CustomTooltipII} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="InverterCurrent" stroke="#03c04a" dot={false} />
@@ -328,7 +328,7 @@ const Graph = ({ dataCharts }) => {
                             margin={{ top: 0, right: 30, left: 0, bottom: 25, }} >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 2']} tickCount={10} />
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']} tickCount={10} />
                             <Tooltip content={CustomTooltipIW} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="InverterPower" stroke="#b90e0a" dot={false} />
@@ -348,7 +348,7 @@ const Graph = ({ dataCharts }) => {
                             margin={{ top: 0, right: 30, left: 0, bottom: 25, }} >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 2']} tickCount={20}/>
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']} tickCount={20}/>
                             <Tooltip content={CustomTooltipGV} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="GridVoltage" stroke="#1338be" dot={false} />
@@ -367,7 +367,7 @@ const Graph = ({ dataCharts }) => {
                             margin={{ top: 0, right: 30, left: 0, bottom: 25, }} >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 2']} tickCount={10}/>
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 30]} tickCount={10}/>
                             <Tooltip content={CustomTooltipGI} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="GridCurrent" stroke="#03c04a" dot={false} />
@@ -386,7 +386,7 @@ const Graph = ({ dataCharts }) => {
                             margin={{ top: 0, right: 30, left: 0, bottom: 25 }} >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 2']} tickCount={20}/>
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']} tickCount={20}/>
                             <Tooltip content={CustomTooltipGW} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="GridPower" stroke="#b90e0a" dot={false} />
@@ -405,7 +405,7 @@ const Graph = ({ dataCharts }) => {
                             margin={{ top: 0, right: 30, left: 0, bottom: 25, }} >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 2']} tickCount={10}/>
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']} tickCount={10}/>
                             <Tooltip content={CustomTooltipBV} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="BatteryVoltage" stroke="#1338be" dot={false} />
@@ -424,7 +424,7 @@ const Graph = ({ dataCharts }) => {
                             margin={{ top: 0, right: 30, left: 0, bottom: 25 }} >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 50]} />
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 30]} tickCount={10}/>
                             <Tooltip content={CustomTooltipGI} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="BatteryCurrent" stroke="#03c04a" dot={false} />
@@ -443,7 +443,7 @@ const Graph = ({ dataCharts }) => {
                             margin={{ top: 0, right: 30, left: 0, bottom: 25 }} >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem' }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 2']} />
+                            <YAxis style={{ fontSize: '0.8rem' }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']} />
                             <Tooltip content={CustomTooltipGW} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="BatteryPower" stroke="#b90e0a" dot={false} />
@@ -466,11 +466,11 @@ const Graph = ({ dataCharts }) => {
                                 </svg>
                             </button>
                         </div>
-                        <LineChart width={1000} height={500} data={dataCharts}
+                        <LineChart width={800} height={400} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem' }} />
-                            <YAxis style={{ fontSize: '0.8rem' }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem' }} domain={[0, 'dataMax + 2']} tickCount={12} />
+                            <YAxis style={{ fontSize: '0.8rem' }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem' }} domain={[0, 'dataMax + 5']} tickCount={12} />
                             <Tooltip content={CustomTooltipSV} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line dataKey="SolarVoltage" stroke="#1338be" dot={false} />
@@ -492,11 +492,11 @@ const Graph = ({ dataCharts }) => {
                                 </svg>
                             </button>
                         </div>
-                        <LineChart width={1000} height={500} data={dataCharts}
+                        <LineChart width={800} height={400} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 50]} />
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 30]} tickCount={10} />
                             <Tooltip content={CustomTooltipSI} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="SolarCurrent" stroke="#03c04a" dot={false} />
@@ -518,7 +518,7 @@ const Graph = ({ dataCharts }) => {
                                 </svg>
                             </button>
                         </div>
-                        <LineChart width={1000} height={500} data={dataCharts}
+                        <LineChart width={800} height={400} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
@@ -544,7 +544,7 @@ const Graph = ({ dataCharts }) => {
                                 </svg>
                             </button>
                         </div>
-                        <LineChart width={1000} height={500} data={dataCharts}
+                        <LineChart width={800} height={400} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
@@ -570,11 +570,11 @@ const Graph = ({ dataCharts }) => {
                                 </svg>
                             </button>
                         </div>
-                        <LineChart width={1000} height={500} data={dataCharts}
+                        <LineChart width={800} height={400} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']} tickCount={10}/>
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 30]} tickCount={10}/>
                             <Tooltip content={CustomTooltipII} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="InverterCurrent" stroke="#03c04a" dot={false} />
@@ -596,7 +596,7 @@ const Graph = ({ dataCharts }) => {
                                 </svg>
                             </button>
                         </div>
-                        <LineChart width={1000} height={500} data={dataCharts}
+                        <LineChart width={800} height={400} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
@@ -622,7 +622,7 @@ const Graph = ({ dataCharts }) => {
                                 </svg>
                             </button>
                         </div>
-                        <LineChart width={1000} height={500} data={dataCharts}
+                        <LineChart width={800} height={400} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
@@ -648,11 +648,11 @@ const Graph = ({ dataCharts }) => {
                                 </svg>
                             </button>
                         </div>
-                        <LineChart width={800} height={450} data={dataCharts}
+                        <LineChart width={800} height={400} data={dataCharts}
                             margin={{ top: 0, right: 20, left: 10, bottom: 20 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']} />
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 30]} tickCount={10}/>
                             <Tooltip content={CustomTooltipGI} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="GridCurrent" stroke="#03c04a" dot={false} />
@@ -674,7 +674,7 @@ const Graph = ({ dataCharts }) => {
                                 </svg>
                             </button>
                         </div>
-                        <LineChart width={1000} height={500} data={dataCharts}
+                        <LineChart width={800} height={400} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
@@ -700,7 +700,7 @@ const Graph = ({ dataCharts }) => {
                                 </svg>
                             </button>
                         </div>
-                        <LineChart width={1000} height={500} data={dataCharts}
+                        <LineChart width={800} height={400} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
@@ -726,11 +726,11 @@ const Graph = ({ dataCharts }) => {
                                 </svg>
                             </button>
                         </div>
-                        <LineChart width={1000} height={500} data={dataCharts}
+                        <LineChart width={800} height={400} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']}/>
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 30]}/>
                             <Tooltip content={CustomTooltipBI} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="BatteryCurrent" stroke="#03c04a" dot={false} />
@@ -752,7 +752,7 @@ const Graph = ({ dataCharts }) => {
                                 </svg>
                             </button>
                         </div>
-                        <LineChart width={1000} height={500} data={dataCharts}
+                        <LineChart width={800} height={400} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />

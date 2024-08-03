@@ -12,10 +12,9 @@ const AllDevices = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_HOST}/admin/Alldevices/`);
+        const response = await axios.get(`${process.env.REACT_APP_HOST}/admin/Alldevices`);
         if (response.status === 200) {
           const data = response.data.data;
-          console.log(data);
           setWorking(data.workingDevices);
           setNotWorking(data.notWorkingDevices);
         }
@@ -26,7 +25,6 @@ const AllDevices = () => {
         setIsLoading(false);
       }
     };
-
     fetchData();
   }, []);
 
@@ -55,7 +53,7 @@ const AllDevices = () => {
                       {device.email}
                     </p>
                     <p className="text-md cursor-pointer p-1 bg-[#8CF35D] shadow-lg rounded-lg border border-black">
-                      Solar Generation : {device.p1ValueTot} kW
+                      Solar Generation : {device.p1ValueTot} kWh
                     </p>
                   </div>
                   {expandedWorkingIndex === index && (
@@ -100,12 +98,12 @@ const AllDevices = () => {
             </div>
             <div className="">
               {notWorking.map((device, index) => (
-                <div key={index} className="p-2 p-2 hover:bg-gray-200 rounded-b-lg">
+                <div key={index} className="p-2 hover:bg-gray-200 rounded-b-lg">
                   <div className="flex items-center justify-between gap-2 cursor-pointer">
                     <p className="text-sm md:text-xl p-1">
                       {device.email}
                     </p>
-                    <p className={`bg-[#FC7266] p-2 rounded-lg shadow-lg border border-black`}>No Data Available</p>
+                    <p className={`bg-[#FC7266] p-1 rounded-lg shadow-lg border border-black`}>No Data Available</p>
                   </div>
                 </div>
               ))}

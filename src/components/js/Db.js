@@ -110,26 +110,38 @@ const AllDevices = () => {
         const data = response.data.data;
         setDateOrg(data.caldate);
         setCurrDate(data.caldate);
-        settValue(data.snapshot.tValue);
-        setSolarVoltage((data.snapshot.solarVoltage).toFixed(2));
-        setSolarCurrent((data.snapshot.solarCurrent).toFixed(2));
-        setInverterVoltage((data.snapshot.inverterVoltage).toFixed(2));
-        setInverterCurrent((data.snapshot.inverterCurrent).toFixed(2));
-        setGridVoltage((data.snapshot.gridVoltage).toFixed(2));
-        setGridCurrent((data.snapshot.gridCurrent).toFixed(2));
-        setBatteryVoltage((data.snapshot.batteryVoltage).toFixed(2));
         setDataCharts(data.dataCharts);
         setSg(data.p1ValueTot);
         setGe(data.p2ValueTot);
         setLc(data.p3ValueTot);
-
+        if(data.snapshot !== null) {
+          settValue(data.snapshot.tValue);
+          setSolarVoltage((data.snapshot.solarVoltage).toFixed(2));
+          setSolarCurrent((data.snapshot.solarCurrent).toFixed(2));
+          setInverterVoltage((data.snapshot.inverterVoltage).toFixed(2));
+          setInverterCurrent((data.snapshot.inverterCurrent).toFixed(2));
+          setGridVoltage((data.snapshot.gridVoltage).toFixed(2));
+          setGridCurrent((data.snapshot.gridCurrent).toFixed(2));
+          setBatteryVoltage((data.snapshot.batteryVoltage).toFixed(2));
+        }
+        else{
+          settValue(data.caldate);
+          setSolarVoltage(0);
+          setSolarCurrent(0);
+          setInverterVoltage(0);
+          setInverterCurrent(0);
+          setGridVoltage(0);
+          setGridCurrent(0);
+          setBatteryVoltage(0);
+        }
+        
         if (data.dataCharts.length > 0) {
           const t = Date.now();
           const currTime = new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }).format(t);
           const check = data.dataCharts[data.dataCharts.length - 1].ccAxisXValue;
           const currValTime = Number(currTime.split(':')[0] + currTime.split(':')[1]);
           const checkVal = Number(check.split(':')[0] + check.split(':')[1]);
-          if (Math.abs(currValTime - checkVal) < 200) {
+          if (Math.abs(currValTime - checkVal) <= 1800) {
             showAlert("This device is working", "success");
           } else {
             showAlert("This device is not working!", "danger");
@@ -189,23 +201,17 @@ const AllDevices = () => {
     try {
       const datas = await axios.post(`${process.env.REACT_APP_HOST}/admin/date`, { selectedItem: selectedItem, date: dateOrg });
       if (datas.status === 200) {
-        const convertTo12HourFormat = (time24) => {
-          const [hours, minutes] = time24.split(':');
-          let hours12 = hours % 12 || 12;
-          const ampm = hours < 12 || hours === 24 ? 'AM' : 'PM';
-          return `${hours12}:${minutes} ${ampm}`;
-        };
 
         const newDataArray = datas.data.data.dataCharts.map(chart => ({
-          time: convertTo12HourFormat(chart.ccAxisXValue),
-          solarVoltage: `${chart.SolarVoltage} V`,
-          solarCurrent: `${chart.SolarCurrent} A`,
-          inverterVoltage: `${chart.InverterVoltage} V`,
-          inverterCurrent: `${chart.InverterCurrent} A`,
-          gridVoltage: `${chart.GridVoltage} V`,
-          gridCurrent: `${chart.GridCurrent} A`,
-          batteryCurrent: `${chart.BatteryCurrent} A`,
-          batteryVoltage: `${chart.BatteryVoltage} V`
+          time: chart.ccAxisXValue,
+          solarVoltage: `${chart.SolarVoltage}`,
+          solarCurrent: `${chart.SolarCurrent}`,
+          inverterVoltage: `${chart.InverterVoltage}`,
+          inverterCurrent: `${chart.InverterCurrent}`,
+          gridVoltage: `${chart.GridVoltage}`,
+          gridCurrent: `${chart.GridCurrent}`,
+          batteryCurrent: `${chart.BatteryCurrent}`,
+          batteryVoltage: `${chart.BatteryVoltage}`
         }));
 
         return newDataArray;
@@ -229,20 +235,54 @@ const AllDevices = () => {
       const data = newDataArray.map(item => ({
         'Time': item.time,
         'Solar Voltage': item.solarVoltage,
+        'SV Unit' : 'V',
         'Solar Current': item.solarCurrent,
+        'SC Unit' : 'A',
         'Inverter Voltage': item.inverterVoltage,
+        'IV Unit' : 'V',
         'Inverter Current': item.inverterCurrent,
+        'IC Unit' : 'A',
         'Grid Voltage': item.gridVoltage,
+        'GV Unit' : 'V',
         'Grid Current': item.gridCurrent,
+        'GC Unit' : 'A',
         'Battery Voltage': item.batteryVoltage,
-        'Battery Current': item.batteryCurrent
+        'BV Unit' : 'V',
+        'Battery Current': item.batteryCurrent,
+        'BC Unit' : 'A',
       }));
 
-      const ws = XLSX.utils.json_to_sheet(data);
-      const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, 'Data Sheet');
+      // Calculate metrics
+    let solarGeneration = 0;
+    let gridEnergy = 0;
+    let loadConsumption = 0;
 
-      XLSX.writeFile(wb, `${location}-${dateOrg}.xlsx`);
+    newDataArray.forEach(item => {
+      const timeDelta = 1;
+      solarGeneration += item.solarCurrent * timeDelta;
+      gridEnergy += item.gridCurrent * timeDelta;
+      loadConsumption += item.inverterCurrent * timeDelta;
+    });
+
+    data.push({});
+    data.push({
+      'Time': 'End of Day',
+      'Solar Voltage': 'Solar Generation : ',
+      'SV Unit' : (solarGeneration / 1000).toFixed(2),
+      'Solar Current': 'kWh',
+      'SC Unit' : 'Grid Energy',
+      'Inverter Voltage': (gridEnergy / 1000).toFixed(2),
+      'IV Unit': 'kWh',
+      'Inverter Current': 'Load Consumption',
+      'IC Unit': (loadConsumption / 1000).toFixed(2),
+      'Grid Voltage' : 'kWh'
+    });
+
+    const ws = XLSX.utils.json_to_sheet(data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Data Sheet');
+
+    XLSX.writeFile(wb, `${location}-${dateOrg}.xlsx`);
     } catch (error) {
       console.error('Error handling print:', error);
     }
@@ -269,9 +309,9 @@ const AllDevices = () => {
     }
     var solarValue = solarVoltage * solarCurrent;
     if (isSolarFailure(solarValue)) {
-      SolarAlart(`Solar failure detected between 6:00 AM and 5:30 PM. ${(solarCurrent * solarVoltage).toFixed(2)} W`);
+      SolarAlart(`Solar failure detected between 6:00 AM and 5:30 PM. ${(solarCurrent * solarVoltage)} W`);
     } else {
-      SolarAlart(`Solar system is operational. ${(solarCurrent * solarVoltage).toFixed(2)} W`);
+      SolarAlart(`Solar system is operational. ${(solarCurrent * solarVoltage)} W`);
     }
 
     function checkInverterStatus(solarVoltage, solarCurrent, batteryCharge, loadStatus, gridAvailability, inverterOutput) {
@@ -339,9 +379,9 @@ const AllDevices = () => {
           ) : (
             ""
           )}
-          <div className={`fixed ${nav ? 'left-0' : '-left-full'} top-[70px] w-68 bg-gray-800 text-white z-10 transition-all duration-300 ease-in-out overflow-y-auto`} style={{ scrollbarWidth: 'thin', scrollbarColor: '#718096 #1A202C', maxHeight: 'calc(100vh - 70px)'}}>
-            {['ftb001-Kollar', 'stb001-Modiyur', 'nrmsv2f001-Ananthapuram', 'rmsv3_001-Vengur', 'rmsv3_002-Sithalingamadam', 'rmsv32_001-Keelathalanur', 'rmsv33_001-Perumukkal', 'rmsv33_002-Agalur', 'rmsv33_005-Saram', 'rmsv34_002-Pootai', 'rmsv35_002-Puthirampattu', 'rmsv4_001-Melmalaiyanur', 'rmsv4_002-Thandavankulam', 'rmsv33_003-Testing', 'rmsv33_004-Testing', 'rmsv33_007-Testing', 'rmsv34_003-Testing', 'rmsv34_004-Testing', 'rmsv34_005-Testing', 'rmsv35_001-Testing', 'rmsv35_003-Testing', 'rmsv4_003-Testing', 'rmsv4_004-Testing', 'rmsv4_005-Testing'].map((item, index) => (
-              <h1 key={index} className="p-2 cursor-pointer select-none" style={{ backgroundColor: selectedItem === item.split('-')[0] ? 'Violet' : '' }} onClick={() => handleMenuItemClick(item.split('-')[0], item.split('-')[1])}>
+          <div className={`fixed ${nav ? 'left-0' : '-left-full'} top-[70px] w-68 bg-gray-800 text-white z-10 transition-all duration-300 ease-in-out overflow-y-auto`} style={{ scrollbarWidth: 'thin', scrollbarColor: '#718096 #1A202C', maxHeight: 'calc(100vh - 70px)' }}>
+            {['ftb001-Kollar', 'stb001-Modaiyur', 'nrmsv2f001-Ananthapuram', 'rmsv3_001-Vengur', 'rmsv3_002-Sithalingamadam', 'rmsv32_001-Keelathalanur', 'rmsv33_001-Perumukkal', 'rmsv33_002-Agalur', 'rmsv33_005-Saram', 'rmsv34_002-Pootai', 'rmsv34_003-Siruvanthadu', 'rmsv35_002-Puthirampattu', 'rmsv35_003-Vadalur', 'rmsv4_001-Melmalaiyanur', 'rmsv4_002-Thandavankulam', 'rmsv33_003-Testing', 'rmsv33_004-Testing', 'rmsv33_007-Testing',  'rmsv34_004-Testing', 'rmsv34_005-Testing', 'rmsv35_001-Testing', 'rmsv35_004-Testing', 'rmsv35_005-Testing', 'rmsv35_006-Testing', 'rmsv35_007-Testing','rmsv35_008-Testing', 'rmsv35_009-Testing', 'rmsv35_010-Testing', 'rmsv35_011-Testing', 'rmsv35_012-Testing', 'rmsv35_013-Testing', 'rmsv35_014-Testing', 'rmsv35_015-Testing', 'rmsv35_016-Testing', 'rmsv35_017-Testing', 'rmsv35_018-Testing', 'rmsv35_019-Testing', 'rmsv35_020-Testing', 'rmsv4_003-Testing', 'rmsv4_004-Testing', 'rmsv4_005-Testing'].map((item, index) => (
+              <h1 key={index} className="p-2 cursor-pointer select-none" style={{ backgroundColor: selectedItem === item.split('-')[0] ? 'Violet' : '' }} onClick={() => handleMenuItemClick(item.split('-')[0], item.split('-')[1] === "Testing" ? item : item.split('-')[1])}>
                 {item}
               </h1>
             ))}
@@ -349,7 +389,7 @@ const AllDevices = () => {
           <div className='flex items-center justify-between p-2 w-full'>
             <div className='flex items-center gap-1 mx-2 select-none'>
               <h1 className='flex items-center justify-center text-xl font-bold'>VALUES CALCULATED ON </h1>
-              <h1 className='flex items-center text-indigo-700 justify-center text-xl font-bold'>{formattedDate.substring(0, 10)}</h1>
+              <h1 className='flex items-center text-indigo-700 justify-center text-xl font-bold'>{formattedDate.split(',')[0]}</h1>
             </div>
             <div className='flex items-center gap-2'>
               <div className='flex items-center justify-center mx-2 gap-1 p-2 shadow-lg rounded-lg bg-blue-700 hover:shadow-xl cursor-pointer select-none' onClick={handlePrint}>
