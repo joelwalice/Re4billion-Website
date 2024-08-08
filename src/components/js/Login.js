@@ -58,7 +58,7 @@ const Login = () => {
     <img src={Solar} className='absolute w-full h-screen' loading="lazy"/>
       <div className='flex flex-col items-center justify-center w-[400px] md:w-[400px] lg:w-[500px] min-h-[450px] bg-[#282250] backdrop-filter backdrop-blur-lg bg-opacity-80 shadow-lg rounded-lg p-4 '>
         <div className='flex flex-col gap-4 items-center'>
-          <img src={Logo} className='max-w-[250px] rounded-lg' loading='lazy' alt="" />
+          <img src={Logo} className='max-w-[250px] rounded-lg' loading="lazy" alt="" />
           <h1 className='flex text-white text-2xl'>Login Page</h1>
           <p className="text-orange-500 font-semibold">{error}</p>
           <div className="text-white flex items-center shadow-lg w-full bg-[#282250] rounded-lg">

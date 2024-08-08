@@ -360,7 +360,7 @@ const AllDevices = () => {
             <Link to="/admin/"><h1 className='text-2xl p-4 font-semibold select-none'>RE4BILLION</h1></Link>
             <div className='flex items-center'>
               <Link to="https://re4billion.ai/"><h1 className='p-2 select-none'>Home</h1></Link>
-              <Link to="/admin/Alldevices"><h1 className='p-2 select-none'>Status</h1></Link>
+              <Link to="/admin/alldevices"><h1 className='p-2 select-none'>Status</h1></Link>
               <Link to="/admin/"><h1 className='p-2 select-none'>Location</h1></Link>
             </div>
           </div>
@@ -380,7 +380,7 @@ const AllDevices = () => {
             ""
           )}
           <div className={`fixed ${nav ? 'left-0' : '-left-full'} top-[70px] w-68 bg-gray-800 text-white z-10 transition-all duration-300 ease-in-out overflow-y-auto`} style={{ scrollbarWidth: 'thin', scrollbarColor: '#718096 #1A202C', maxHeight: 'calc(100vh - 70px)' }}>
-            {['ftb001-Kollar', 'stb001-Modaiyur', 'nrmsv2f001-Ananthapuram', 'rmsv3_001-Vengur', 'rmsv3_002-Sithalingamadam', 'rmsv32_001-Keelathalanur', 'rmsv33_001-Perumukkal', 'rmsv33_002-Agalur', 'rmsv33_005-Saram', 'rmsv34_002-Pootai', 'rmsv34_003-Siruvanthadu', 'rmsv35_002-Puthirampattu', 'rmsv35_003-Vadalur', 'rmsv4_001-Melmalaiyanur', 'rmsv4_002-Thandavankulam', 'rmsv33_003-Testing', 'rmsv33_004-Testing', 'rmsv33_007-Testing',  'rmsv34_004-Testing', 'rmsv34_005-Testing', 'rmsv35_001-Testing', 'rmsv35_004-Testing', 'rmsv35_005-Testing', 'rmsv35_006-Testing', 'rmsv35_007-Testing','rmsv35_008-Testing', 'rmsv35_009-Testing', 'rmsv35_010-Testing', 'rmsv35_011-Testing', 'rmsv35_012-Testing', 'rmsv35_013-Testing', 'rmsv35_014-Testing', 'rmsv35_015-Testing', 'rmsv35_016-Testing', 'rmsv35_017-Testing', 'rmsv35_018-Testing', 'rmsv35_019-Testing', 'rmsv35_020-Testing', 'rmsv4_003-Testing', 'rmsv4_004-Testing', 'rmsv4_005-Testing'].map((item, index) => (
+            {['ftb001-Kollar', 'stb001-Modaiyur', 'nrmsv2f001-Ananthapuram', 'rmsv3_001-Vengur', 'rmsv3_002-Sithalingamadam', 'rmsv32_001-Keelathalanur', 'rmsv33_001-Perumukkal', 'rmsv33_002-Agalur', 'rmsv33_005-Saram', 'rmsv34_002-Pootai', 'rmsv34_003-Siruvanthadu', 'rmsv35_002-Puthirampattu', 'rmsv35_003-Vadalur','rmsv35_008-Kanniyapuram', 'rmsv4_001-Melmalaiyanur', 'rmsv4_002-Thandavankulam', 'rmsv33_003-Testing', 'rmsv33_004-Testing', 'rmsv33_007-Testing',  'rmsv34_004-Testing', 'rmsv34_005-Testing', 'rmsv35_001-Testing', 'rmsv35_004-Testing', 'rmsv35_005-Testing', 'rmsv35_006-Testing', 'rmsv35_007-Testing', 'rmsv35_009-Testing', 'rmsv35_010-Testing', 'rmsv35_011-Testing', 'rmsv35_012-Testing', 'rmsv35_013-Testing', 'rmsv35_014-Testing', 'rmsv35_015-Testing', 'rmsv35_016-Testing', 'rmsv35_017-Testing', 'rmsv35_018-Testing', 'rmsv35_019-Testing', 'rmsv35_020-Testing', 'rmsv4_003-Testing', 'rmsv4_004-Testing', 'rmsv4_005-Testing'].map((item, index) => (
               <h1 key={index} className="p-2 cursor-pointer select-none" style={{ backgroundColor: selectedItem === item.split('-')[0] ? 'Violet' : '' }} onClick={() => handleMenuItemClick(item.split('-')[0], item.split('-')[1] === "Testing" ? item : item.split('-')[1])}>
                 {item}
               </h1>
