@@ -272,7 +272,7 @@ const Graph = ({ dataCharts }) => {
                             margin={{ top: 0, right: 30, left: 0, bottom: 25 }}>
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 10']} tickCount={20}  />
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 350]} tickCount={20}  />
                             <Tooltip content={CustomTooltipSW} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="SolarPower" stroke="#b90e0a" dot={false} />
@@ -405,7 +405,7 @@ const Graph = ({ dataCharts }) => {
                             margin={{ top: 0, right: 30, left: 0, bottom: 25, }} >
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']} tickCount={10}/>
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 35]} tickCount={20}/>
                             <Tooltip content={CustomTooltipBV} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="BatteryVoltage" stroke="#1338be" dot={false} />

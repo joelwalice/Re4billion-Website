@@ -12,7 +12,7 @@ const AllDevices = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_HOST}/admin/Alldevices`);
+        const response = await axios.get(`${process.env.REACT_APP_HOST}/admin/alldevices`);
         if (response.status === 200) {
           const data = response.data.data;
           setWorking(data.workingDevices);
