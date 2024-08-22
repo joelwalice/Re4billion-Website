@@ -87,9 +87,9 @@ const AllDevices = () => {
 
       const dataS = await axios.post(`${process.env.REACT_APP_HOST}/admin/val`, {selectedItem : selectedItem, date : e});
       if(dataS.status === 200){
-          setSg((dataS.data.data.SolarGeneration).toFixed(2));
-          setGe((dataS.data.data.GridEnergy).toFixed(2));
-          setLc((dataS.data.data.LoadConsumption).toFixed(2));
+          setSg((dataS.data.data.SolarGeneration).toFixed(2) || 0.00);
+          setGe((dataS.data.data.GridEnergy).toFixed(2) || 0.00);
+          setLc((dataS.data.data.LoadConsumption).toFixed(2) || 0.00);
       }
 
       const newDataArray = data.data.data.dataCharts.map(chart => ({
