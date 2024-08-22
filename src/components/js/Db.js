@@ -75,7 +75,6 @@ const AllDevices = () => {
     window.location.href = "/";
   }
   const changeDate = async (e) => {
-    console.log(selectedItem, e);
     const data = await axios.post(`${process.env.REACT_APP_HOST}/admin/date`, { selectedItem: selectedItem, date: e });
     if (data.status === 200) {
       const convertTo12HourFormat = (time24) => {
@@ -84,6 +83,14 @@ const AllDevices = () => {
         const ampm = hours < 12 || hours === 24 ? 'AM' : 'PM';
         return `${hours12}:${minutes} ${ampm}`;
       };
+
+
+      const dataS = await axios.post(`${process.env.REACT_APP_HOST}/admin/val`, {selectedItem : selectedItem, date : e});
+      if(dataS.status === 200){
+          setSg((dataS.data.data.SolarGeneration).toFixed(2));
+          setGe((dataS.data.data.GridEnergy).toFixed(2));
+          setLc((dataS.data.data.LoadConsumption).toFixed(2));
+      }
 
       const newDataArray = data.data.data.dataCharts.map(chart => ({
         time: convertTo12HourFormat(chart.ccAxisXValue),
@@ -413,42 +420,42 @@ const AllDevices = () => {
                   <div className={`lg:w-[300px] md:w-[200px] hover:cursor-pointer hover:scale-105 duration-500 ${solarVoltage > 2 ? 'bg-[#50DFC2]' : 'bg-[#FF627C]'} flex flex-col items-center p-3 gap-2 rounded-lg shadow-lg`}>
                     <h1 className="text-white text-2xl font-bold">Solar Voltage</h1>
                     <div className="flex items-center gap-2 p-2">
-                      <img src={SolarImg} width={30} />
+                      <img src={SolarImg} width={30} loading="lazy"/>
                       <h1 className="text-white text-2xl font-bold">{solarVoltage} V</h1>
                     </div>
                   </div>
                   <div className={`lg:w-[300px] md:w-[200px] hover:cursor-pointer hover:scale-105 duration-500 ${solarCurrent > 0 ? 'bg-[#50DFC2]' : 'bg-[#FF627C]'} flex flex-col items-center p-3 gap-2 rounded-lg shadow-lg`}>
                     <h1 className="text-white text-2xl font-bold">Solar Current</h1>
                     <div className="flex items-center gap-2 p-2">
-                      <img src={SolarImg} width={30} />
+                      <img src={SolarImg} width={30} loading="lazy"/>
                       <h1 className="text-white text-2xl font-bold">{solarCurrent} A</h1>
                     </div>
                   </div>
                   <div className={`lg:w-[300px] md:w-[200px] hover:cursor-pointer hover:scale-105 duration-500 ${inverterVoltage > 180 ? 'bg-[#50DFC2]' : 'bg-[#FF627C]'} flex flex-col items-center p-3 gap-2 rounded-lg shadow-lg`}>
                     <h1 className="text-white text-2xl font-bold">Inverter Voltage</h1>
                     <div className="flex items-center gap-2 p-2">
-                      <img src={InverterImg} width={30} />
+                      <img src={InverterImg} width={30} loading="lazy"/>
                       <h1 className="text-white text-2xl font-bold">{inverterVoltage} V</h1>
                     </div>
                   </div>
                   <div className={`lg:w-[300px] md:w-[200px] hover:cursor-pointer hover:scale-105 duration-500 ${inverterCurrent > 0 ? 'bg-[#50DFC2]' : 'bg-[#FF627C]'} flex flex-col items-center p-3 gap-2 rounded-lg shadow-lg`}>
                     <h1 className="text-white text-2xl font-bold">Inverter Current</h1>
                     <div className="flex items-center gap-2 p-2">
-                      <img src={InverterImg} width={30} />
+                      <img src={InverterImg} width={30} loading="lazy"/>
                       <h1 className="text-white text-2xl font-bold">{inverterCurrent} A</h1>
                     </div>
                   </div>
                   <div className={`lg:w-[300px] md:w-[200px] hover:cursor-pointer hover:scale-105 duration-500 ${gridVoltage > 160 ? 'bg-[#50DFC2]' : 'bg-[#FF627C]'} flex flex-col items-center p-3 gap-2 rounded-lg shadow-lg`}>
                     <h1 className="text-white text-2xl font-bold">Grid Voltage</h1>
                     <div className="flex items-center gap-2 p-2">
-                      <img src={ThunderImg} width={30} />
+                      <img src={ThunderImg} width={30} loading="lazy"/>
                       <h1 className="text-white text-2xl font-bold">{gridVoltage} V</h1>
                     </div>
                   </div>
                   <div className={`lg:w-[300px] md:w-[200px] hover:cursor-pointer hover:scale-105 duration-500 ${gridCurrent > 0 ? 'bg-[#50DFC2]' : 'bg-[#FF627C]'} flex flex-col items-center p-3 gap-2 rounded-lg shadow-lg`}>
                     <h1 className="text-white text-2xl font-bold">Grid Current</h1>
                     <div className="flex items-center gap-2 p-2">
-                      <img src={ThunderImg} width={30} />
+                      <img src={ThunderImg} width={30} loading="lazy"/>
                       <h1 className="text-white text-2xl font-bold">{gridCurrent} A</h1>
                     </div>
                   </div>
@@ -459,14 +466,14 @@ const AllDevices = () => {
                 <div className={`lg:w-[300px] md:w-[200px] p-4 hover:cursor-pointer hover:scale-105 duration-500 ${batteryVoltage > 22 ? 'bg-[#50DFC2]' : 'bg-[#FF627C]'} flex flex-col items-center p-3 gap-2 rounded-lg shadow-lg`}>
                   <h1 className="text-white text-2xl font-bold">Battery Voltage</h1>
                   <div className="flex items-center gap-2 p-2">
-                    <img src={BatteryImg} width={50} />
+                    <img src={BatteryImg} width={50} loading="lazy"/>
                     <h1 className="text-white text-2xl font-bold">{batteryVoltage} V</h1>
                   </div>
                 </div>
                 {batteryCurrent && (<div className={`lg:w-[300px] md:w-[200px] p-4 hover:cursor-pointer hover:scale-105 duration-500 ${batteryVoltage > 0 ? 'bg-[#50DFC2]' : 'bg-[#FF627C]'} flex flex-col items-center p-3 gap-2 rounded-lg shadow-lg`}>
                   <h1 className="text-white text-2xl font-bold">Battery Current</h1>
                   <div className="flex items-center gap-2 p-2">
-                    <img src={BatteryImg} width={50} />
+                    <img src={BatteryImg} width={50} loading="lazy"/>
                     <h1 className="text-white text-2xl font-bold">{batteryCurrent} V</h1>
                   </div>
                 </div>)}
@@ -480,21 +487,21 @@ const AllDevices = () => {
                 <div className={`lg:w-[280px] md:w-[200px] bg-[#38DAB9] m-4 p-4 hover:cursor-pointer hover:scale-105 duration-500 flex flex-col items-center p-3 gap-5 rounded-lg shadow-lg`}>
                   <h1 className="text-white text-2xl font-bold">Solar Generation</h1>
                   <div className="flex items-center gap-2 p-2">
-                    <img src={SolarImg} width={30} />
+                    <img src={SolarImg} width={30} loading="lazy"/>
                     <h1 className="text-white text-2xl font-bold">{sg} kWh</h1>
                   </div>
                 </div>
                 <div className={`lg:w-[280px] md:w-[200px] bg-[#67AEFF] m-4 p-4 hover:cursor-pointer hover:scale-105 duration-500 flex flex-col items-center p-3 gap-2 rounded-lg shadow-lg`}>
                   <h1 className="text-white text-2xl font-bold">Grid Energy</h1>
                   <div className="flex items-center gap-2 p-2">
-                    <img src={ThunderImg} width={30} />
+                    <img src={ThunderImg} width={30} loading="lazy"/>
                     <h1 className="text-white text-2xl font-bold">{ge} kWh</h1>
                   </div>
                 </div>
                 <div className={`lg:w-[280px] md:w-[200px] bg-[#FF5A76] m-4 p-4 hover:cursor-pointer hover:scale-105 duration-500 flex flex-col items-center p-3 gap-2 rounded-lg shadow-lg`}>
                   <h1 className="text-white text-2xl font-bold">Load Consumption</h1>
                   <div className="flex items-center gap-2 p-2">
-                    <img src={BulbImg} width={40} />
+                    <img src={BulbImg} width={40} loading="lazy"/>
                     <h1 className="text-white text-2xl font-bold">{lc} kWh</h1>
                   </div>
                 </div>
