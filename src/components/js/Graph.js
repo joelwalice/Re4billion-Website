@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import Enlarge from '../images/expand.png'
 
-const Graph = ({ dataCharts }) => {
+const Graph = ({ dataCharts, dateOrg }) => {
     const [showModal1, setShowModal1] = useState(false);
     const [showModal2, setShowModal2] = useState(false);
     const [showModal3, setShowModal3] = useState(false);
@@ -41,18 +41,16 @@ const Graph = ({ dataCharts }) => {
     const handleShowModal10 = () => setShowModal10(true);
     const handleShowModal11 = () => setShowModal11(true);
     const handleShowModal12 = () => setShowModal12(true);
-
-
-    const curr = new Date(new Date());
+            
     const CustomTooltipGW = ({ active, payload, label }) => {
         if (active && payload && payload.length) {
             const data = payload[0].payload;
 
             return (
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
-                    <p className="label" style={{ color: '#B90E0A' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
+                    <p className="label" style={{ color: '#B90E0A' }}>{`Date : ${dateOrg}`}</p>
                     <p className="label" style={{ color: '#B90E0A' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
-                    <p className="intro" style={{ color: '#B90E0A' }}>{`Grid Power: ${data.GridPower} KW`}</p>
+                    <p className="intro" style={{ color: '#B90E0A' }}>{`Grid Power: ${data.GridPower} W`}</p>
                 </div>
             );
         }
@@ -65,9 +63,9 @@ const Graph = ({ dataCharts }) => {
 
             return (
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
-                    <p className="label" style={{ color: '#B90E0A' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
+                    <p className="label" style={{ color: '#B90E0A' }}>{`Date : ${dateOrg}`}</p>
                     <p className="label" style={{ color: '#B90E0A' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
-                    <p className="intro" style={{ color: '#B90E0A' }}>{`Solar Power: ${data.SolarPower} KW`}</p>
+                    <p className="intro" style={{ color: '#B90E0A' }}>{`Solar Power: ${data.SolarPower} W`}</p>
                 </div>
             );
         }
@@ -80,9 +78,9 @@ const Graph = ({ dataCharts }) => {
 
             return (
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
-                    <p className="label" style={{ color: '#B90E0A' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
+                    <p className="label" style={{ color: '#B90E0A' }}>{`Date : ${dateOrg}`}</p>
                     <p className="label" style={{ color: '#B90E0A' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
-                    <p className="intro" style={{ color: '#B90E0A' }}>{`Inverter Power: ${data.InverterPower} KW`}</p>
+                    <p className="intro" style={{ color: '#B90E0A' }}>{`Inverter Power: ${data.InverterPower} W`}</p>
                 </div>
             );
         }
@@ -95,9 +93,9 @@ const Graph = ({ dataCharts }) => {
 
             return (
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
-                    <p className="label" style={{ color: '#B90E0A' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
+                    <p className="label" style={{ color: '#B90E0A' }}>{`Date : ${dateOrg}`}</p>
                     <p className="label" style={{ color: '#B90E0A' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
-                    <p className="intro" style={{ color: '#B90E0A' }}>{`Inverter Power: ${data.BatteryPower} KW`}</p>
+                    <p className="intro" style={{ color: '#B90E0A' }}>{`Inverter Power: ${data.BatteryPower} W`}</p>
                 </div>
             );
         }
@@ -110,7 +108,7 @@ const Graph = ({ dataCharts }) => {
 
             return (
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
-                    <p className="label" style={{ color: '#03C04A' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
+                    <p className="label" style={{ color: '#03C04A' }}>{`Date : ${dateOrg}`}</p>
                     <p className="label" style={{ color: '#03C04A' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
                     <p className="intro" style={{ color: '#03C04A' }}>{`Grid Current: ${data.GridCurrent} A`}</p>
                 </div>
@@ -125,7 +123,7 @@ const Graph = ({ dataCharts }) => {
 
             return (
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
-                    <p className="label" style={{ color: '#03C04A' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
+                    <p className="label" style={{ color: '#03C04A' }}>{`Date : ${dateOrg}`}</p>
                     <p className="label" style={{ color: '#03C04A' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
                     <p className="intro" style={{ color: '#03C04A' }}>{`Inverter Current: ${data.InverterCurrent} A`}</p>
                 </div>
@@ -140,7 +138,7 @@ const Graph = ({ dataCharts }) => {
 
             return (
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
-                    <p className="label" style={{ color: '#03C04A' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
+                    <p className="label" style={{ color: '#03C04A' }}>{`Date : ${dateOrg}`}</p>
                     <p className="label" style={{ color: '#03C04A' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
                     <p className="intro" style={{ color: '#03C04A' }}>{`Solar Current: ${data.SolarCurrent} A`}</p>
                 </div>
@@ -155,7 +153,7 @@ const Graph = ({ dataCharts }) => {
 
             return (
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
-                    <p className="label" style={{ color: '#03C04A' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
+                    <p className="label" style={{ color: '#03C04A' }}>{`Date : ${dateOrg}`}</p>
                     <p className="label" style={{ color: '#03C04A' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
                     <p className="intro" style={{ color: '#03C04A' }}>{`Solar Current: ${data.BatteryCurrent.toFixed(2)} A`}</p>
                 </div>
@@ -170,7 +168,7 @@ const Graph = ({ dataCharts }) => {
 
             return (
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
-                    <p className="label" style={{ color: '#1338BE' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
+                    <p className="label" style={{ color: '#1338BE' }}>{`Date : ${dateOrg}`}</p>
                     <p className="label" style={{ color: '#1338BE' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
                     <p className="intro" style={{ color: '#1338BE' }}>{`Solar Voltage: ${data.SolarVoltage} V`}</p>
                 </div>
@@ -185,9 +183,11 @@ const Graph = ({ dataCharts }) => {
 
             return (
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
-                    <p className="label" style={{ color: '#1338BE' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
+                    <p className="label" style={{ color: '#1338BE' }}>{`Date : ${dateOrg}`}</p>
                     <p className="label" style={{ color: '#1338BE' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
                     <p className="intro" style={{ color: '#1338BE' }}>{`Battery Voltage: ${data.BatteryVoltage} V`}</p>
+                    <p className="intro" style={{ color: '#B90E0A' }}>{`Battery High: 29 V`}</p>
+                    <p className="intro" style={{ color: '#B90E0A' }}>{`Battery Low: 21.6 V`}</p>
                 </div>
             );
         }
@@ -200,7 +200,7 @@ const Graph = ({ dataCharts }) => {
 
             return (
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
-                    <p className="label" style={{ color: '#1338BE' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
+                    <p className="label" style={{ color: '#1338BE' }}>{`Date : ${dateOrg}`}</p>
                     <p className="label" style={{ color: '#1338BE' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
                     <p className="intro" style={{ color: '#1338BE' }}>{`Grid Voltage: ${data.GridVoltage} V`}</p>
                 </div>
@@ -215,7 +215,7 @@ const Graph = ({ dataCharts }) => {
             let h;
             return (
                 <div className="custom-tooltip" style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc', borderRadius: '10px' }}>
-                    <p className="label" style={{ color: '#1338BE' }}>{`Date : ${curr.getDate() + ' / ' + curr.getMonth() + " / " + curr.getFullYear()}`}</p>
+                    <p className="label" style={{ color: '#1338BE' }}>{`Date : ${dateOrg}`}</p>
                     <p className="label" style={{ color: '#1338BE' }}>{`Time: ${data.ccAxisXValue.split(":")[0] == 24 ? "00:" + data.ccAxisXValue.split(":")[1] : data.ccAxisXValue}`}</p>
                     <p className="intro" style={{ color: '#1338BE' }}>{`Inverter Voltage: ${data.InverterVoltage} V`}</p>
                 </div>
@@ -232,15 +232,35 @@ const Graph = ({ dataCharts }) => {
                         <img src={Enlarge} width={20} className="" onClick={handleShowModal1} />
                     </div>
                     <div className="">
-                        <LineChart width={380} height={280} data={dataCharts}
-                            margin={{ top: 0, right: 30, left: 0, bottom: 25 }}>
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem' }} tickSize={10}/>
-                            <YAxis style={{ fontSize: '0.8rem' }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem' }} domain={[0, 45]} tickCount={12} />
-                            <Tooltip content={CustomTooltipSV} />
-                            <Legend layout="horizontal" verticalAlign="top" align="center" />
-                            <Line type="monotone" dataKey="SolarVoltage" stroke="#1338be" dot={false} />
-                        </LineChart>
+                    <LineChart width={380} height={280} data={dataCharts}
+                        margin={{ top: 0, right: 30, left: 0, bottom: 25 }}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis
+                            dataKey="ccAxisXValue"
+                            angle={-15}
+                            textAnchor="end"
+                            style={{ fontSize: '0.8rem' }}
+                            tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}
+                        />
+                        <YAxis style={{ fontSize: '0.8rem' }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem' }} domain={[0, 60]} tickCount={13} />
+                        <Tooltip content={CustomTooltipSV} />
+                        <Legend layout="horizontal" verticalAlign="top" align="center" />
+                        <Line 
+                            type="monotone" 
+                            dataKey="SolarVoltage" 
+                            stroke="#1338be" 
+                            dot={false} 
+                            name="Solar Voltage"
+                        />
+                    </LineChart>
                     </div>
                 </div>
                 <div className="bg-gray-100 rounded-lg shadow-lg border-[#17A2B8] border-2">
@@ -252,8 +272,22 @@ const Graph = ({ dataCharts }) => {
                         <LineChart width={380} height={280} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 0, bottom: 25 }}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} tickCount={10} domain={[0, 30]} />
+                            <XAxis
+                            dataKey="ccAxisXValue"
+                            angle={-15}
+                            textAnchor="end"
+                            style={{ fontSize: '0.8rem' }}
+                            tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}
+                        />
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} tickCount={8} domain={[0, 30]} />
                             <Tooltip content={CustomTooltipSI} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="SolarCurrent" stroke="#03c04a" dot={false} />
@@ -271,8 +305,22 @@ const Graph = ({ dataCharts }) => {
                         <LineChart width={380} height={280} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 0, bottom: 25 }}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 350]} tickCount={20}  />
+                            <XAxis
+                            dataKey="ccAxisXValue"
+                            angle={-15}
+                            textAnchor="end"
+                            style={{ fontSize: '0.8rem' }}
+                            tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}
+                        />
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 1000]} tickCount={6}  />
                             <Tooltip content={CustomTooltipSW} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="SolarPower" stroke="#b90e0a" dot={false} />
@@ -287,14 +335,45 @@ const Graph = ({ dataCharts }) => {
                         <img src={Enlarge} width={20} className="" onClick={handleShowModal4} />
                     </div>
                     <div className="">
-                        <LineChart width={380} height={280} data={dataCharts} margin={{ top: 0, right: 30, left: 0, bottom: 25, }} >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 240]} tickCount={14}  />
-                            <Tooltip content={CustomTooltipIV} />
-                            <Legend layout="horizontal" verticalAlign="top" align="center" />
-                            <Line type="monotone" dataKey="InverterVoltage" stroke="#1338be" dot={false} />
-                            {/* <Line name="Inverter Voltage" type="monotone" dataKey="InverterVoltageSmooth"  stroke="#1338be"  dot={false} /> */}
+                    <LineChart
+                        width={380}
+                        height={280}
+                        data={dataCharts}
+                        margin={{ top: 0, right: 30, left: 0, bottom: 25 }}
+                        >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis
+                            dataKey="ccAxisXValue"
+                            angle={-15}
+                            textAnchor="end"
+                            style={{ fontSize: '0.8rem' }}
+                            tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}
+                        />
+                        <YAxis
+                            style={{ fontSize: '0.8rem' }}
+                            label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem' }}
+                            domain={[0, 270]}
+                            tickCount={7}
+                        />
+                        <Tooltip content={CustomTooltipGV} />
+                        <Legend layout="horizontal" verticalAlign="top" align="center" />
+                        <Line type="monotone" dataKey="InverterVoltage" stroke="#1338be" dot={false} />
+                        <Line
+                            type="monotone"
+                            dataKey={() => 180}
+                            stroke="#B90E0A"
+                            dot={false}
+                            strokeDasharray="3 3"
+                            legendType="none"
+                        />
                         </LineChart>
                     </div>
                 </div>
@@ -308,12 +387,25 @@ const Graph = ({ dataCharts }) => {
                         <LineChart width={380} height={280} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 0, bottom: 25, }} >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 30]} tickCount={10}/>
+                            <XAxis
+                            dataKey="ccAxisXValue"
+                            angle={-15}
+                            textAnchor="end"
+                            style={{ fontSize: '0.8rem' }}
+                            tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}
+                        />
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 5]} tickCount={6}/>
                             <Tooltip content={CustomTooltipII} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="InverterCurrent" stroke="#03c04a" dot={false} />
-                            {/* <Line name="Inverter Current" type="monotone" dataKey="InverterCurrentSmooth"  stroke="#03c04a"  dot={false} /> */}
                         </LineChart>
                     </div>
                 </div>
@@ -327,12 +419,26 @@ const Graph = ({ dataCharts }) => {
                         <LineChart width={380} height={280} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 0, bottom: 25, }} >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 350]} tickCount={10} />
+                            <XAxis
+                            dataKey="ccAxisXValue"
+                            angle={-15}
+                            textAnchor="end"
+                            tickCount={20}
+                            style={{ fontSize: '0.8rem' }}
+                            tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}
+                        />
+                        <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 1000]} tickCount={6} />
                             <Tooltip content={CustomTooltipIW} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="InverterPower" stroke="#b90e0a" dot={false} />
-                            {/* <Line name="Inverter Power" type="monotone" dataKey="InverterPowerSmooth"  stroke="#b90e0a"  dot={false} /> */}
                         </LineChart>
                     </div>
 
@@ -347,12 +453,41 @@ const Graph = ({ dataCharts }) => {
                         <LineChart width={380} height={280} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 0, bottom: 25, }} >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 240]} tickCount={20}/>
+                            <XAxis
+                            dataKey="ccAxisXValue"
+                            angle={-15}
+                            textAnchor="end"
+                            style={{ fontSize: '0.8rem' }}
+                            tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}
+                        />
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 270]} tickCount={7}/>
                             <Tooltip content={CustomTooltipGV} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="GridVoltage" stroke="#1338be" dot={false} />
-                            {/* <Line name="Grid Voltage" type="monotone" dataKey="GridVoltageSmooth" stroke="#1338be"  dot={false} /> */}
+                            {/* <Line 
+                                type="monotone" 
+                                dataKey={() => 10} 
+                                stroke="#ff0000" 
+                                dot={false} 
+                                strokeDasharray="3 3"
+                                name="High Margin"
+                            /> */}
+                            <Line 
+                                type="monotone" 
+                                dataKey={() => 180} 
+                                stroke="#B90E0A" 
+                                dot={false} 
+                                strokeDasharray="3 3"
+                                legendType="none"
+                            />
                         </LineChart>
                     </div>
                 </div>
@@ -366,8 +501,22 @@ const Graph = ({ dataCharts }) => {
                         <LineChart width={380} height={280} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 0, bottom: 25, }} >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 30]} tickCount={10}/>
+                            <XAxis
+                            dataKey="ccAxisXValue"
+                            angle={-15}
+                            textAnchor="end"
+                            style={{ fontSize: '0.8rem' }}
+                            tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}
+                        />
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 5]} tickCount={6}/>
                             <Tooltip content={CustomTooltipGI} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="GridCurrent" stroke="#03c04a" dot={false} />
@@ -385,8 +534,22 @@ const Graph = ({ dataCharts }) => {
                         <LineChart width={380} height={280} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 0, bottom: 25 }} >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 650]} tickCount={20}/>
+                            <XAxis
+                            dataKey="ccAxisXValue"
+                            angle={-15}
+                            textAnchor="end"
+                            style={{ fontSize: '0.8rem' }}
+                            tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}
+                        />
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 1000]} tickCount={6}/>
                             <Tooltip content={CustomTooltipGW} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="GridPower" stroke="#b90e0a" dot={false} />
@@ -404,12 +567,41 @@ const Graph = ({ dataCharts }) => {
                         <LineChart width={380} height={280} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 0, bottom: 25, }} >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
+                            <XAxis
+                            dataKey="ccAxisXValue"
+                            angle={-15}
+                            textAnchor="end"
+                            style={{ fontSize: '0.8rem' }}
+                            tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}
+                        />
                             <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 35]} tickCount={20}/>
                             <Tooltip content={CustomTooltipBV} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="BatteryVoltage" stroke="#1338be" dot={false} />
-                            {/* <Line name="Battery Voltage" type="monotone" dataKey="BatteryVoltageSmooth" stroke="#1338be"  dot={false} /> */}
+                            <Line 
+                                type="monotone" 
+                                dataKey={() => 29} 
+                                stroke="#ff0000" 
+                                dot={false} 
+                                strokeDasharray="3 3"
+                                legendType="none"
+                            />
+                            <Line 
+                                type="monotone" 
+                                dataKey={() => 21.6} 
+                                stroke="#B90E0A" 
+                                dot={false} 
+                                strokeDasharray="3 3"
+                                legendType="none"
+                            />
                         </LineChart>
                     </div>
                 </div>
@@ -423,7 +615,21 @@ const Graph = ({ dataCharts }) => {
                         <LineChart width={380} height={280} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 0, bottom: 25 }} >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
+                            <XAxis
+                            dataKey="ccAxisXValue"
+                            angle={-15}
+                            textAnchor="end"
+                            style={{ fontSize: '0.8rem' }}
+                            tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}
+                        />
                             <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 30]} tickCount={10}/>
                             <Tooltip content={CustomTooltipGI} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
@@ -442,8 +648,22 @@ const Graph = ({ dataCharts }) => {
                         <LineChart width={380} height={280} data={dataCharts}
                             margin={{ top: 0, right: 30, left: 0, bottom: 25 }} >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem' }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']} />
+                            <XAxis
+                            dataKey="ccAxisXValue"
+                            angle={-15}
+                            textAnchor="end"
+                            style={{ fontSize: '0.8rem' }}
+                            tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}
+                        />
+                            <YAxis style={{ fontSize: '0.8rem' }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 1000]} />
                             <Tooltip content={CustomTooltipGW} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="BatteryPower" stroke="#b90e0a" dot={false} />
@@ -467,10 +687,19 @@ const Graph = ({ dataCharts }) => {
                             </button>
                         </div>
                         <LineChart width={800} height={400} data={dataCharts}
-                            margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
+                            margin={{ top: -15, right: 30, left: 20, bottom: 15 }}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem' }} />
-                            <YAxis style={{ fontSize: '0.8rem' }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem' }} domain={[0, 'dataMax + 5']} tickCount={12} />
+                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem' }} 
+                            tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}/>
+                            <YAxis style={{ fontSize: '0.8rem' }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem' }} domain={[0, 60]} tickCount={14} />
                             <Tooltip content={CustomTooltipSV} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line dataKey="SolarVoltage" stroke="#1338be" dot={false} />
@@ -493,10 +722,19 @@ const Graph = ({ dataCharts }) => {
                             </button>
                         </div>
                         <LineChart width={800} height={400} data={dataCharts}
-                            margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
+                            margin={{ top: -15, right: 30, left: 20, bottom: 15  }}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 30]} tickCount={10} />
+                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} 
+                            tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}/>
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 30]} tickCount={15} />
                             <Tooltip content={CustomTooltipSI} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="SolarCurrent" stroke="#03c04a" dot={false} />
@@ -519,10 +757,18 @@ const Graph = ({ dataCharts }) => {
                             </button>
                         </div>
                         <LineChart width={800} height={400} data={dataCharts}
-                            margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
+                            margin={{ top: -15, right: 30, left: 20, bottom: 15  }}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']} tickCount={10}/>
+                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}/>
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 1000]} tickCount={11}/>
                             <Tooltip content={CustomTooltipSW} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="SolarPower" stroke="#b90e0a" dot={false} />
@@ -545,14 +791,37 @@ const Graph = ({ dataCharts }) => {
                             </button>
                         </div>
                         <LineChart width={800} height={400} data={dataCharts}
-                            margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
+                            margin={{ top: -15, right: 30, left: 20, bottom: 15  }}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']} tickCount={10}/>
+                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}/>
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 275]} tickCount={14}/>
                             <Tooltip content={CustomTooltipIV} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="InverterVoltage" stroke="#1338be" dot={false} />
-                            {/* <Line name="Inverter Voltage" type="monotone" dataKey="InverterVoltageSmooth"  stroke="#1338be"  dot={false} /> */}
+                            {/* <Line 
+                                type="monotone" 
+                                dataKey={() => 270} 
+                                stroke="#ff0000" 
+                                dot={false} 
+                                strokeDasharray="3 3"
+                                name="High Margin"
+                            /> */}
+                            <Line 
+                                type="monotone" 
+                                dataKey={() => 180} 
+                                stroke="#B90E0A" 
+                                dot={false} 
+                                strokeDasharray="3 3"
+                                name="Low Voltage"
+                            />
                         </LineChart>
                     </div>
                 </div>
@@ -571,10 +840,18 @@ const Graph = ({ dataCharts }) => {
                             </button>
                         </div>
                         <LineChart width={800} height={400} data={dataCharts}
-                            margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
+                            margin={{ top: -15, right: 30, left: 20, bottom: 15 }}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 30]} tickCount={10}/>
+                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}/>
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 5]} tickCount={12}/>
                             <Tooltip content={CustomTooltipII} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="InverterCurrent" stroke="#03c04a" dot={false} />
@@ -597,10 +874,18 @@ const Graph = ({ dataCharts }) => {
                             </button>
                         </div>
                         <LineChart width={800} height={400} data={dataCharts}
-                            margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
+                            margin={{ top: -15, right: 30, left: 20, bottom: 15 }}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']} tickCount={10}/>
+                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}/>
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 1000]} tickCount={11}/>
                             <Tooltip content={CustomTooltipIW} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="InverterPower" stroke="#b90e0a" dot={false} />
@@ -623,14 +908,37 @@ const Graph = ({ dataCharts }) => {
                             </button>
                         </div>
                         <LineChart width={800} height={400} data={dataCharts}
-                            margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
+                            margin={{ top: -15, right: 30, left: 20, bottom: 15 }}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']} tickCount={10}/>
+                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}/>
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 270]} tickCount={14}/>
                             <Tooltip content={CustomTooltipGV} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="GridVoltage" stroke="#1338be" dot={false} />
-                            {/* <Line name="Grid Voltage" type="monotone" dataKey="GridVoltageSmooth" stroke="#1338be"  dot={false} /> */}
+                            {/* <Line 
+                                type="monotone" 
+                                dataKey={() => 10} 
+                                stroke="#ff0000" 
+                                dot={false} 
+                                strokeDasharray="3 3"
+                                name="High Margin"
+                            /> */}
+                            <Line 
+                                type="monotone" 
+                                dataKey={() => 180} 
+                                stroke="#B90E0A" 
+                                dot={false} 
+                                strokeDasharray="3 3"
+                                name="Low Voltage"
+                            />
                         </LineChart>
                     </div>
                 </div>
@@ -649,10 +957,18 @@ const Graph = ({ dataCharts }) => {
                             </button>
                         </div>
                         <LineChart width={800} height={400} data={dataCharts}
-                            margin={{ top: 0, right: 20, left: 10, bottom: 20 }}>
+                            margin={{ top: -15, right: 30, left: 20, bottom: 15 }}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 30]} tickCount={10}/>
+                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}/>
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 5]} tickCount={11}/>
                             <Tooltip content={CustomTooltipGI} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="GridCurrent" stroke="#03c04a" dot={false} />
@@ -675,10 +991,18 @@ const Graph = ({ dataCharts }) => {
                             </button>
                         </div>
                         <LineChart width={800} height={400} data={dataCharts}
-                            margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
+                            margin={{ top: -15, right: 30, left: 20, bottom: 15 }}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']} tickCount={10}/>
+                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}/>
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 1000]} tickCount={11}/>
                             <Tooltip content={CustomTooltipGW} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="GridPower" stroke="#b90e0a" dot={false} />
@@ -701,14 +1025,37 @@ const Graph = ({ dataCharts }) => {
                             </button>
                         </div>
                         <LineChart width={800} height={400} data={dataCharts}
-                            margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
+                            margin={{ top: -15, right: 30, left: 20, bottom: 15 }}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
-                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']} tickCount={10}/>
+                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}/>
+                            <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Volts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 35]} tickCount={36}/>
                             <Tooltip content={CustomTooltipBV} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
                             <Line type="monotone" dataKey="BatteryVoltage" stroke="#1338be" dot={false} />
-                            {/* <Line name="Battery Voltage" type="monotone" dataKey="BatteryVoltageSmooth" stroke="#1338be"  dot={false} /> */}
+                            <Line 
+                                type="monotone" 
+                                dataKey={() => 29} 
+                                stroke="#ff0000" 
+                                dot={false} 
+                                strokeDasharray="3 3"
+                                legendType="none"
+                            />
+                            <Line 
+                                type="monotone" 
+                                dataKey={() => 21.6} 
+                                stroke="#B90E0A" 
+                                dot={false} 
+                                strokeDasharray="3 3"
+                                legendType="none"
+                            />
                         </LineChart>
                     </div>
                 </div>
@@ -727,9 +1074,17 @@ const Graph = ({ dataCharts }) => {
                             </button>
                         </div>
                         <LineChart width={800} height={400} data={dataCharts}
-                            margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
+                            margin={{ top: -15, right: 30, left: 20, bottom: 15 }}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
+                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}/>
                             <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Amps)', angle: -90, fontSize: '0.9rem', }} domain={[0, 30]}/>
                             <Tooltip content={CustomTooltipBI} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />
@@ -753,9 +1108,17 @@ const Graph = ({ dataCharts }) => {
                             </button>
                         </div>
                         <LineChart width={800} height={400} data={dataCharts}
-                            margin={{ top: 0, right: 30, left: 20, bottom: 5 }}>
+                            margin={{ top: -15, right: 30, left: 20, bottom: 15 }}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} />
+                            <XAxis dataKey="ccAxisXValue" angle={-15} textAnchor="end" style={{ fontSize: '0.8rem', }} tickFormatter={(tick) => {
+                                const [hourStr, minuteStr] = tick.split(":");
+                                let hour = parseInt(hourStr, 10);
+                                let minute = parseInt(minuteStr, 10);
+                                minute = minute < 10 ? `0${minute}` : minuteStr;
+                                hour = hour < 10 ? `0${hour}` : hour;
+                                if(hour === 24) return `00:${minute}`;
+                                else return `${hour}:${minute}`;
+                            }}/>
                             <YAxis style={{ fontSize: '0.8rem', }} label={{ dx: -20, value: '(Watts)', angle: -90, fontSize: '0.9rem', }} domain={[0, 'dataMax + 5']} />
                             <Tooltip content={CustomTooltipBW} />
                             <Legend layout="horizontal" verticalAlign="top" align="center" />

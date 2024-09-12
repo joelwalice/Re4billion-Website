@@ -72,15 +72,6 @@ const AllDevices = () => {
                           {device.additionalData.batteryVoltage >= 0 && (
                             <p className={`${device.additionalData.batteryVoltage.toFixed(2) > 2 ? "bg-[#8CF35D]" : "bg-[#FC7266]"} p-2 rounded-lg shadow-lg border border-black`}>Battery Voltage: {device.additionalData.batteryVoltage.toFixed(2)} V</p>
                           )}
-                          {device.additionalData.solarVoltage >= 0 && device.additionalData.solarCurrent >= 0 && (
-                            <p className={`${(device.additionalData.solarVoltage * device.additionalData.solarCurrent).toFixed(2) > 2 ? "bg-[#8CF35D]" : "bg-[#FC7266]"} p-2 rounded-lg shadow-lg border border-black`}>{(device.additionalData.solarVoltage * device.additionalData.solarCurrent).toFixed(2) > 2 ? `Solar is Up :  ${(device.additionalData.solarVoltage * device.additionalData.solarCurrent).toFixed(2)} V` : `Solar is Down :  ${(device.additionalData.solarVoltage * device.additionalData.solarCurrent).toFixed(2)} V`} </p>
-                          )}
-                          {device.additionalData.inverterVoltage >= 0 && device.additionalData.inverterCurrent >= 0 && (
-                            <p className={`${(device.additionalData.inverterVoltage * device.additionalData.inverterCurrent).toFixed(2) > 2 ? "bg-[#8CF35D]" : "bg-[#FC7266]"} p-2 rounded-lg shadow-lg border border-black`}>{(device.additionalData.inverterVoltage * device.additionalData.inverterCurrent).toFixed(2) > 2 ? `Inverter is Up :  ${(device.additionalData.inverterVoltage * device.additionalData.inverterCurrent).toFixed(2)} V` : `Inverter is Down :  ${(device.additionalData.solarVoltage * device.additionalData.solarCurrent).toFixed(2)} V`} </p>
-                          )}
-                          {device.additionalData.batteryVoltage >= 0 && device.additionalData.batteryCurrent >= 0 && (
-                            <p className={`${(device.additionalData.batteryVoltage * device.additionalData.batteryCurrent).toFixed(2) > 2 ? "bg-[#8CF35D]" : "bg-[#FC7266]"} p-2 rounded-lg shadow-lg border border-black`}>{(device.additionalData.inverterVoltage * device.additionalData.inverterCurrent).toFixed(2) > 2 ? `Battery is Up :  ${(device.additionalData.solarVoltage * device.additionalData.batteryCurrent).toFixed(2)} V` : `Battery is Down :  ${(device.additionalData.batteryVoltage * device.additionalData.solarCurrent).toFixed(2)} V`} </p>
-                          )}
                         </div>
                       ) : (
                         <p>Data not available</p>
@@ -114,5 +105,16 @@ const AllDevices = () => {
     </div>
   );
 }
+
+
+// {device.additionalData.solarVoltage >= 0 && device.additionalData.solarCurrent >= 0 && (
+//   <p className={`${(device.additionalData.solarVoltage * device.additionalData.solarCurrent).toFixed(2) > 2 ? "bg-[#8CF35D]" : "bg-[#FC7266]"} p-2 rounded-lg shadow-lg border border-black`}>{(device.additionalData.solarVoltage * device.additionalData.solarCurrent).toFixed(2) > 2 ? `Solar is Up :  ${(device.additionalData.solarVoltage * device.additionalData.solarCurrent).toFixed(2)} V` : `Solar is Down :  ${(device.additionalData.solarVoltage * device.additionalData.solarCurrent).toFixed(2)} V`} </p>
+// )}
+// {device.additionalData.inverterVoltage >= 0 && device.additionalData.inverterCurrent >= 0 && (
+//   <p className={`${(device.additionalData.inverterVoltage * device.additionalData.inverterCurrent).toFixed(2) > 2 ? "bg-[#8CF35D]" : "bg-[#FC7266]"} p-2 rounded-lg shadow-lg border border-black`}>{(device.additionalData.inverterVoltage * device.additionalData.inverterCurrent).toFixed(2) > 2 ? `Inverter is Up :  ${(device.additionalData.inverterVoltage * device.additionalData.inverterCurrent).toFixed(2)} V` : `Inverter is Down :  ${(device.additionalData.solarVoltage * device.additionalData.solarCurrent).toFixed(2)} V`} </p>
+// )}
+// {device.additionalData.batteryVoltage >= 0 && device.additionalData.batteryCurrent >= 0 && (
+//   <p className={`${(device.additionalData.batteryVoltage * device.additionalData.batteryCurrent).toFixed(2) > 2 ? "bg-[#8CF35D]" : "bg-[#FC7266]"} p-2 rounded-lg shadow-lg border border-black`}>{(device.additionalData.inverterVoltage * device.additionalData.inverterCurrent).toFixed(2) > 2 ? `Battery is Up :  ${(device.additionalData.solarVoltage * device.additionalData.batteryCurrent).toFixed(2)} V` : `Battery is Down :  ${(device.additionalData.batteryVoltage * device.additionalData.solarCurrent).toFixed(2)} V`} </p>
+// )}
 
 export default AllDevices;
