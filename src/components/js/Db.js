@@ -72,11 +72,42 @@ const AllDevices = () => {
     Cookies.remove("setLocation");
     window.location.href = "/";
   };
+
+  useEffect(() => {
+    if (Cookies.get("selectedItem")) {
+      setSelectedItem(Cookies.get("selectedItem"));
+    }
+    if (Cookies.get("setLocation")) {
+      setLocation(Cookies.get("setLocation"));
+    }
+    if (!Cookies.get("token") || Cookies.get("role") !== "Admin") {
+      window.location.href = "/";
+    }
+    setToken(Cookies.get("token"));
+    fetchData(Cookies.get("selectedItem") || selectedItem);
+  }, [selectedItem]);
+
+  useEffect(() => {
+    if (tvalue) {
+      const val = new Date(tvalue * 1000);
+      setFormattedDate(val.toLocaleString());
+    }
+  }, [tvalue]);
+
   const changeDate = async (e) => {
-    const data = await axios.post(`${process.env.REACT_APP_HOST}/admin/date`, {
-      selectedItem: selectedItem,
-      date: e,
-    });
+    const token = Cookies.get("token");
+    const data = await axios.post(
+      `${process.env.REACT_APP_HOST}/admin/date`,
+      {
+        selectedItem: selectedItem,
+        date: e,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
     if (data.status === 200) {
       const convertTo12HourFormat = (time24) => {
         const [hours, minutes] = time24.split(":");
@@ -105,11 +136,17 @@ const AllDevices = () => {
   const fetchData = async (item) => {
     try {
       setIsLoading(true);
+      const token = Cookies.get("token");
       const response = await axios.post(
         `${process.env.REACT_APP_HOST}/admin/db`,
-        { selectedItem: item }
+        { selectedItem: item },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
-      if (response.status === 200){
+      if (response.status === 200) {
         const data = response.data.data;
         setDateOrg(data.caldate);
         setCurrDate(data.caldate);
@@ -139,10 +176,17 @@ const AllDevices = () => {
 
         if (data.dataCharts.length > 0) {
           const t = Date.now();
-          const currTime = new Intl.DateTimeFormat('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }).format(t);
-          const check = data.dataCharts[data.dataCharts.length - 1].ccAxisXValue;
-          const currValTime = Number(currTime.split(':')[0] + currTime.split(':')[1]);
-          const checkVal = Number(check.split(':')[0] + check.split(':')[1]);
+          const currTime = new Intl.DateTimeFormat("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false,
+          }).format(t);
+          const check =
+            data.dataCharts[data.dataCharts.length - 1].ccAxisXValue;
+          const currValTime = Number(
+            currTime.split(":")[0] + currTime.split(":")[1]
+          );
+          const checkVal = Number(check.split(":")[0] + check.split(":")[1]);
           if (Math.abs(currValTime - checkVal) <= 50) {
             console.log(checkVal, currValTime);
             showAlert("This device is working", "success");
@@ -150,8 +194,7 @@ const AllDevices = () => {
             console.log(checkVal, currValTime);
             showAlert("This device is not working!", "danger");
           }
-        }
-        else {
+        } else {
           showAlert("This device is not working!", "danger");
         }
       }
@@ -177,32 +220,17 @@ const AllDevices = () => {
     setNav(!nav);
   };
 
-  useEffect(() => {
-    if (Cookies.get("selectedItem")) {
-      setSelectedItem(Cookies.get("selectedItem"));
-    }
-    if (Cookies.get("setLocation")) {
-      setLocation(Cookies.get("setLocation"));
-    }
-    if (!Cookies.get("token") || Cookies.get("role") !== "Admin") {
-      window.location.href = "/";
-    }
-    setToken(Cookies.get("token"));
-    fetchData(Cookies.get("selectedItem") || selectedItem);
-  }, [selectedItem]);
-
-  useEffect(() => {
-    if (tvalue) {
-      const val = new Date(tvalue * 1000);
-      setFormattedDate(val.toLocaleString());
-    }
-  }, [tvalue]);
-
   const dataFetch = async () => {
     try {
+      const token = Cookies.get("token");
       const datas = await axios.post(
         `${process.env.REACT_APP_HOST}/admin/date`,
-        { selectedItem: selectedItem, date: dateOrg }
+        { selectedItem: selectedItem, date: dateOrg },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       if (datas.status === 200) {
         const newDataArray = datas.data.data.dataCharts.map((chart) => ({
@@ -216,7 +244,7 @@ const AllDevices = () => {
           batteryCurrent: `${chart.BatteryCurrent}`,
           batteryVoltage: `${chart.BatteryVoltage}`,
         }));
-  
+
         return newDataArray;
       }
     } catch (error) {
@@ -224,17 +252,17 @@ const AllDevices = () => {
       return [];
     }
   };
-  
+
   const handlePrint = async (e) => {
     e.preventDefault();
-  
+
     try {
       const newDataArray = await dataFetch();
       if (newDataArray.length === 0) {
         console.warn("No data fetched");
         return;
       }
-  
+
       const data = newDataArray.map((item) => ({
         Time: item.time,
         "Solar Voltage": item.solarVoltage,
@@ -254,23 +282,23 @@ const AllDevices = () => {
         "Battery Current": item.batteryCurrent,
         "BC Unit": "A",
       }));
-  
+
       let solarGeneration = 0;
       let gridEnergy = 0;
       let loadConsumption = 0;
-  
+
       newDataArray.forEach((item) => {
         const timeDelta = 1;
 
         const solarCurrent = parseFloat(item.solarCurrent) || 0;
         const gridCurrent = parseFloat(item.gridCurrent) || 0;
         const inverterCurrent = parseFloat(item.inverterCurrent) || 0;
-  
+
         solarGeneration += solarCurrent * timeDelta;
         gridEnergy += gridCurrent * timeDelta;
         loadConsumption += inverterCurrent * timeDelta;
       });
-  
+
       data.push({});
       data.push({
         Time: "End of Day",
@@ -281,20 +309,19 @@ const AllDevices = () => {
         "Inverter Voltage": (gridEnergy / 1000).toFixed(2),
         "IV Unit": "kWh",
         "Inverter Current": "Load Consumption",
-        "IC Unit": (loadConsumption / 1000).toFixed(2), 
+        "IC Unit": (loadConsumption / 1000).toFixed(2),
         "Grid Voltage": "kWh",
       });
-  
+
       const ws = XLSX.utils.json_to_sheet(data);
       const wb = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, "Data Sheet");
-  
+
       XLSX.writeFile(wb, `${location}-${dateOrg}.xlsx`);
     } catch (error) {
       console.error("Error handling print:", error);
     }
   };
-  
 
   useEffect(() => {
     function isSolarFailure(solarValue) {
